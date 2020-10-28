@@ -17,7 +17,7 @@
 
             echo "<tr>";
             echo "<td>Usuario $user[0] </td>";
-            echo "<td>$users[1] </td>";
+            echo "<td>$user[1] </td>";
             echo "<td> <a href='index.php?method=show&id=$user[0]'> ver </a></td>";
             echo "</tr>";
 
