@@ -1,4 +1,5 @@
 <?php
+namespace App\Controllers;
 
 class HomeController
 {
@@ -8,6 +9,7 @@ class HomeController
     }
     public function index()
     {
-        echo "home->index";
+        // echo "home->index";
+        include('../views/home.php');
     }
 }

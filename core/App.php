@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 class App
 {
@@ -42,6 +43,8 @@ class App
             die();
         }    
         
+        $controllerName = "\App\Controllers\\$controllerName";
+
         $controllerObject = new $controllerName;
         if (method_exists($controllerName, $method)) {
             $controllerObject->$method($arguments);
