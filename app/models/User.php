@@ -20,6 +20,17 @@ class User
         return $users;        
     }
 
+    public static function find($id)
+    {
+        $db = User::db();
+
+        $statement = $db->prepare('SELECT * FROM users WHERE id=:id');
+        $statement->execute(array(':id' => $id));        
+        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $user = $statement->fetch(PDO::FETCH_CLASS);
+        return $user;
+    }
+
     protected static function db()
     {
         $dsn = 'mysql:dbname=mvc;host=db';

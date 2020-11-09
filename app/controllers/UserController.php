@@ -8,12 +8,12 @@ class UserController
 {
     public function __construct()
     {
-        echo "en UserController<br>";
+        // echo "en UserController<br>";
     }
 
     public function index()
     {
-        echo "En método index<br>";
+        // echo "En método index<br>";
 
         //buscar la lista de usuarios
         $users = User::all(); //arriba pongo use ...
@@ -28,6 +28,9 @@ class UserController
     {
         $id = $arguments[0];
         echo "Mostrar el usuario $id";        
+        $user = User::find($id);
+        //generar la vista
+        include('../views/user/show.php');
     }
     
     public function delete($arguments)
