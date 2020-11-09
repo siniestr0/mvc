@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC</title>
-</head>
-<body>
-    <h1>Detalle de usuario <?= $user->id ?></h1>
-    <ul>
-        <li>
-            Nombre: <?= $user->name ?>
-        </li>
-        <li>
-            Apellido: <?= $user->surname ?>
-        </li>
-        <li>
-            Email: <?= $user->email ?>
-        </li>
-        <li>
-            F. Nacimiento: <?= $user->birthdate ?>
-        </li>
-    </ul>
-</body>
-</html>
+<?php include('../views/parts/head.php'); ?>
+<?php include('../views/parts/header.php'); ?>
+<!-- Begin page content -->
+<main role="main" class="container">    
+    <h1>Detalle de usuario</h1>
+    <div class="card">
+        <div class="card-header">
+            Usuario número <?= $user->id ?>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nombre: <?= $user->name ?></li>
+            <li class="list-group-item">Apellidos: <?= $user->surname ?></li>
+            <li class="list-group-item">Email: <?= $user->email ?></li>
+            <li class="list-group-item">Fecha nacimiento: <?= $user->birthdate ?></li>
+        </ul>
+  </div>    
+</main>
+
+<?php include('../views/parts/footer.php'); ?>
