@@ -1,32 +1,26 @@
 <?php
 namespace App\Models;
 
-require_once '../core/Model.php';
-
-use Core\Model;
 use PDO;
 use PDOException;
 
-
-class User extends Model {
-    public function __construct() {
-        # code...
-    }
-
-    public static function all() {
-        $db = User::db();
-        $statement = $db->query('SELECT * FROM users');
-        $users = $statement->fetchAll(PDO::FETCH_CLASS, User::class);
+class ProductType {
+    
+    public static function all(){
+        $db = ProductType::db();
+        $statement = $db->query('SELECT * FROM product_types');
+        $users = $statement->fetchAll(PDO::FETCH_CLASS, ProductType::class);
 
         return $users;        
     }
 
-    public static function find($id){
-        $db = User::db();
 
-        $statement = $db->prepare('SELECT * FROM users WHERE id=:id');
+    public static function find($id){
+        $db = ProductType::db();
+
+        $statement = $db->prepare('SELECT * FROM product_types WHERE id=:id');
         $statement->execute(array(':id' => $id));        
-        $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $statement->setFetchMode(PDO::FETCH_CLASS, ProductType::class);
         $user = $statement->fetch(PDO::FETCH_CLASS);
         return $user;
     }
@@ -43,4 +37,5 @@ class User extends Model {
         }
         return $db;
     }
+
 }
