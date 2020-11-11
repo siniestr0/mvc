@@ -43,4 +43,19 @@ class User extends Model {
         }
         return $db;
     }
+
+    public  function insert($id){
+        $db = User::db();
+
+        //Le vamos a decir qué valores le queremos meter a la base de datos.
+        $statement = $db->prepare('INSERT * INTO users (name, surname, email, birthdate)
+         VALUES(:name, :surname, :email, :birthdate)');  // revisar sintaxis SQL INSERT VALUES
+        $statement->execute(array(
+                        ':name' => $this->name,
+                        ':surname' => $this->surname,
+                        ':email' => $this->email,
+                        ':birthdate' => $this->birthdate));        
+        
+        return $statement ->execute();
+    }
 }

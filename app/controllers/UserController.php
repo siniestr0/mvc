@@ -38,4 +38,25 @@ class UserController
         $id = $arguments[0];
         echo "Borrar el usuario $id";        
     }
+
+    public function create(){
+
+        include('../views/create.php');
+    }
+
+    public function store() {
+
+        //crear objeto
+        $user = new User;
+        $user ->name = $_POST['name'];
+        $user ->surname = $_POST['surname'];
+        $user ->email = $_POST['email'];
+        $user ->bithdate = $_POST['birthdate'];
+
+        $user ->insert();
+
+        //redirigir
+
+        header('location: /user/index.php');
+    }
 }
