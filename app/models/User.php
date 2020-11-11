@@ -32,4 +32,31 @@ class User extends Model
         $user = $statement->fetch(PDO::FETCH_CLASS);
         return $user;
     }
+
+    public function insert()
+    {
+        $db = User::db();
+        $statement = $db->prepare('INSERT INTO users(`name`, `surname`, `email`, `birthdate`) VALUES(:name, :surname, :email, :birthdate)');
+        $data = [
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate
+        ];
+        return $statement->execute($data);
+    }
+
+    public function save()
+    {
+        $db = User::db();
+        $statement = $db->prepare('UPDATE users SET `name`=:name, `surname`=:surname, `email`=:email, `birthdate`=:birthdate WHERE id=:id');
+        $data = [
+            ':id' => $this->id,
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate
+        ];
+        return $statement->execute($data);
+    }
 }
