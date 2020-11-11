@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 
-use PDO;
-use PDOException;
+require_once '../core/Model.php'; # preparo el acceso a otro fichero
 
-class User
+use PDO;
+use Core\Model; # sigo preparando mediante use.
+
+class User extends Model
 {
     public function __construct()
     {
@@ -29,19 +31,5 @@ class User
         $statement->setFetchMode(PDO::FETCH_CLASS, User::class);
         $user = $statement->fetch(PDO::FETCH_CLASS);
         return $user;
-    }
-
-    protected static function db()
-    {
-        $dsn = 'mysql:dbname=mvc;host=db';
-        $usuario = 'root';
-        $contraseña = 'password';
-        try {
-            $db = new PDO($dsn, $usuario, $contraseña);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Falló la conexión: ' . $e->getMessage();
-        }
-        return $db;
     }
 }
