@@ -50,12 +50,31 @@ class User extends Model {
         //Le vamos a decir qué valores le queremos meter a la base de datos.
         $statement = $db->prepare('INSERT * INTO users (name, surname, email, birthdate)
          VALUES(:name, :surname, :email, :birthdate)');  // revisar sintaxis SQL INSERT VALUES
-        $statement->execute(array(
+        
+        $data = [
                         ':name' => $this->name,
                         ':surname' => $this->surname,
                         ':email' => $this->email,
-                        ':birthdate' => $this->birthdate));        
-        
-        return $statement ->execute();
+                        ':birthdate' => $this->birthdate        
+        ];
+        return $statement ->execute($data);
     }
+
+
+    public function delete() {
+
+            $db = User::db();
+            $statement = $db-> prepare('DELETE FROM users WHERE id=:id');
+            return $statement->execute([':id' => $this->id]);
+
+        }
+
+    public static function destroy($id){
+
+            $db = User::db();
+            $statement = $db-> prepare('DELETE FROM users WHERE id=:id');
+            return $statement->execute([':id' => $id]);
+
+        }
+
 }

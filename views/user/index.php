@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MVC</title>
-</head>
-<body>
-    <h1>Lista de usuarios  </h1>
-
-    <table>
+<?php include('../views/parts/head.php'); ?>
+<?php include('../views/parts/header.php'); ?>
+<!-- Begin page content -->
+<main role="main" class="container">
+  <h1>Lista de usuarios  </h1>
+  <table class="table table-striped">
         <thead>
             <tr>
             <th>Nombre</th>
@@ -30,5 +25,6 @@
             <?php } ?>            
         </tbody>
     </table>
-</body>
-</html>
+</main>
+
+<?php include('../views/parts/footer.php'); ?>

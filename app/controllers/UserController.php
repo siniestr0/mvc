@@ -41,7 +41,7 @@ class UserController
 
     public function create(){
 
-        include('../views/create.php');
+        include('../mvc/views/user/create.php');
     }
 
     public function store() {
@@ -58,5 +58,16 @@ class UserController
         //redirigir
 
         header('location: /user/index.php');
+    }
+
+    public function edit ($arguments){
+
+        $id = $arguments[0];
+        //buscar datos
+        $user = User::find($id);
+
+        include ('../views/user/edit.php');
+        
+
     }
 }
