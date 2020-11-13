@@ -25,6 +25,7 @@
                 <td><?= $user->birthdate ?></td>
                 <td><a class="btn btn-primary btn-sm" href="/user/show/<?= $user->id ?>">  Ver </a></td>
                 <td><a class="btn btn-primary btn-sm" href="/user/edit/<?= $user->id ?>">  Editar </a></td>
+                <td><a class="btn btn-primary btn-sm" href="/user/delete/<?= $user->id ?>">  Borrar </a></td>
                 </tr>
             <?php } ?>            
         </tbody>

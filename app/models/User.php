@@ -59,4 +59,18 @@ class User extends Model
         ];
         return $statement->execute($data);
     }
+    
+    public function delete()
+    {
+        $db = User::db();
+        $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
+        return $statement->execute([':id' => $this->id]);        
+    }
+
+    public static function destroy($id)
+    {
+        $db = User::db();
+        $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
+        return $statement->execute([':id' => $id]);        
+    }
 }
