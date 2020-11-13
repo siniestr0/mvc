@@ -44,24 +44,23 @@ class User extends Model {
         return $db;
     }
 
-    public  function insert($id){
+    public function insert(){
         $db = User::db();
+        //creamos la consulta de SQL para insertar datos en la BBDD 
+        $statement = $db->prepare('INSERT INTO users(name, surname, email, birthdate) VALUES(:name, :surname, :email, :birthdate)');
 
-        //Le vamos a decir qué valores le queremos meter a la base de datos.
-        $statement = $db->prepare('INSERT * INTO users (name, surname, email, birthdate)
-         VALUES(:name, :surname, :email, :birthdate)');  // revisar sintaxis SQL INSERT VALUES
-        
+        // Esta parte es como el contructor, asignamos las variables que vamos a modificar
         $data = [
-                        ':name' => $this->name,
-                        ':surname' => $this->surname,
-                        ':email' => $this->email,
-                        ':birthdate' => $this->birthdate        
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate
         ];
-        return $statement ->execute($data);
+        return $statement->execute($data);
     }
 
-
-    public function delete() {
+    // dudas sobre la diferencia entre DESTROY y DELETE la parte de SQL es la misma, pero no se executa igual.
+    public function delete(){
 
             $db = User::db();
             $statement = $db-> prepare('DELETE FROM users WHERE id=:id');
@@ -75,6 +74,20 @@ class User extends Model {
             $statement = $db-> prepare('DELETE FROM users WHERE id=:id');
             return $statement->execute([':id' => $id]);
 
+        }
+
+        // La función SAVE es para modificar la BBDD, de modo que en lugar de meter datos, lo que hacemos es un UPDATE desde la sintaxis de SQL
+    public function save() {
+            $db = User::db();
+            $statement = $db->prepare('UPDATE users SET `name`=:name, `surname`=:surname, `email`=:email, `birthdate`=:birthdate WHERE id=:id');
+            $data = [
+                ':id' => $this->id,
+                ':name' => $this->name,
+                ':surname' => $this->surname,
+                ':email' => $this->email,
+                ':birthdate' => $this->birthdate
+            ];
+            return $statement->execute($data);
         }
 
 }
