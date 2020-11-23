@@ -1,0 +1,20 @@
+{
+    "name": "alumno/mvc",
+    "description": "\"Proyecto MVC de clase\"",
+    "authors": [
+        {
+            "name": "Rafa Cabeza",
+            "email": "rafacabeza@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^0.8.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Models\\": "app/models/"
+        }
+    }
+}

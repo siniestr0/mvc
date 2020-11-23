@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-require_once('../app/models/User.php');
+// require_once('../app/models/User.php');
 use \App\Models\User;
 
 class UserController  
@@ -37,8 +37,8 @@ class UserController
     {
         $id = $arguments[0];
         //enfoque 1:
-        // $user = User::find($id);
-        // $user->delete();
+        $user = User::find($id);
+        $user->delete();
 
         // //enfoque 2
         User::destroy($id);

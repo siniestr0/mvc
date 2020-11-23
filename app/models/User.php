@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-require_once '../core/Model.php'; # preparo el acceso a otro fichero
+// require_once '../core/Model.php'; # preparo el acceso a otro fichero
 
 use PDO;
 use Core\Model; # sigo preparando mediante use.
