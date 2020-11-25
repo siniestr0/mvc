@@ -1,15 +1,27 @@
 <?php
 namespace App\Models;
 
+<<<<<<< HEAD
 require_once '../core/Model.php';
 
 use Core\Model;
-use PDO;
-use PDOException;
+=======
+// require_once '../core/Model.php'; # preparo el acceso a otro fichero
 
+>>>>>>> e1c1386f31a6a2890bf5a5a8433341eec90f3c70
+use PDO;
+use Core\Model; # sigo preparando mediante use.
+
+<<<<<<< HEAD
 
 class User extends Model {
     public function __construct() {
+=======
+class User extends Model
+{
+    public function __construct()
+    {
+>>>>>>> e1c1386f31a6a2890bf5a5a8433341eec90f3c70
         # code...
     }
 
@@ -31,6 +43,7 @@ class User extends Model {
         return $user;
     }
 
+<<<<<<< HEAD
     protected static function db(){
         $dsn = 'mysql:dbname=mvc;host=db';
         $usuario = 'root';
@@ -42,6 +55,62 @@ class User extends Model {
             echo 'Falló la conexión: ' . $e->getMessage();
         }
         return $db;
+=======
+    public function insert()
+    {
+        $db = User::db();
+        $statement = $db->prepare('INSERT INTO users(`name`, `surname`, `email`, `birthdate`) VALUES(:name, :surname, :email, :birthdate)');
+        $data = [
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate
+        ];
+        return $statement->execute($data);
+    }
+
+    public function save()
+    {
+        $db = User::db();
+        $statement = $db->prepare('UPDATE users SET `name`=:name, `surname`=:surname, `email`=:email, `birthdate`=:birthdate WHERE id=:id');
+        $data = [
+            ':id' => $this->id,
+            ':name' => $this->name,
+            ':surname' => $this->surname,
+            ':email' => $this->email,
+            ':birthdate' => $this->birthdate
+        ];
+        return $statement->execute($data);
+    }
+    
+    public function delete()
+    {
+        $db = User::db();
+        $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
+        return $statement->execute([':id' => $this->id]);        
+    }
+
+    public static function destroy($id)
+    {
+        $db = User::db();
+        $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
+        return $statement->execute([':id' => $id]);        
+    }
+
+    public function setPassword($password)
+    {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $db = User::db();
+        $stmt = $db->prepare('UPDATE users SET password = :password WHERE id = :id');
+        $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':password', $password);
+        $stmt->execute();
+        return $password;
+    }
+    public function passwordVerify($password)
+    {
+        return password_verify($password, $this->password);
+>>>>>>> e1c1386f31a6a2890bf5a5a8433341eec90f3c70
     }
 
     public function insert(){

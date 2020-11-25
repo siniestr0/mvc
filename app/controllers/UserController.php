@@ -39,6 +39,8 @@ class UserController
         //enfoque 1:
         // $user = User::find($id);
         // $user->delete();
+        $user = User::find($id);
+        $user->delete();
 
         // //enfoque 2
         User::destroy($id);
@@ -96,4 +98,5 @@ class UserController
         header('Location: /user/index');
 
     }
+}
 }

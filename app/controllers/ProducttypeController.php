@@ -1,8 +1,7 @@
- 
 <?php
 namespace App\Controllers;
 
-require_once('../app/models/Producttype.php');
+// require_once('../app/models/Producttype.php');
 use \App\Models\ProductType;
 
 use App\Controllers\ProductController;
@@ -23,5 +22,12 @@ class ProducttypeController {
         // print_r($products);
         //generar la vista
         include('../views/user/index.php');
+    }
+}
+class ProducttypeController  
+{
+    public function index()
+    {
+        $producttypes = ProductType::all();
     }
 }

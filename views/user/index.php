@@ -33,3 +33,4 @@
 </main>
 
 <?php include('../views/parts/footer.php'); ?>
+<?php include('../views/parts/footer.php'); ?>
