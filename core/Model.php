@@ -9,7 +9,7 @@ class Model
 {
    protected static function db()
     {
-        $dsn = 'mysql:dbname=mvc;host=db';
+        $dsn = 'mysql:dbname=mvc;host=db;charset=utf8';
         $usuario = 'root';
         $contraseña = 'password';
         try {

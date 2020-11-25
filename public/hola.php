@@ -1,2 +1,4 @@
 <?php
-echo "hola mundo";
+
+
+echo password_hash('zaragoza2020', PASSWORD_BCRYPT);

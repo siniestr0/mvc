@@ -73,4 +73,19 @@ class User extends Model
         $statement = $db->prepare('DELETE FROM users WHERE id=:id');        
         return $statement->execute([':id' => $id]);        
     }
+
+    public function setPassword($password)
+    {
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $db = User::db();
+        $stmt = $db->prepare('UPDATE users SET password = :password WHERE id = :id');
+        $stmt->bindValue(':id', $this->id);
+        $stmt->bindValue(':password', $password);
+        $stmt->execute();
+        return $password;
+    }
+    public function passwordVerify($password)
+    {
+        return password_verify($password, $this->password);
+    }
 }
